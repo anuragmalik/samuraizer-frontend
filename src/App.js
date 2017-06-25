@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import EmailItem from './EmailItem';
 
+import data from './data.js'
 class App extends Component {
   render() {
+    console.log(data)
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+      <div>
+        {
+          data.map(({headers, plain}) => {
+            const {Avatar, Subject, From, To, Date, Description } = headers;
+            const Body = plain;
+          return <EmailItem avatar={Avatar} metaData={From + "\n" + To + "\n" + Date}
+
+          subject={Subject} body={Body} description={Description}/>
+        })
+      }
       </div>
+
     );
   }
 }
